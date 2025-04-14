@@ -57,10 +57,27 @@ export default function Header({ onSearch }: HeaderProps) {
     <header className="sticky top-0 z-50 w-full bg-white border-b shadow-sm">
       <div className="container flex items-center justify-between h-16 px-4 mx-auto">
         {/* Logo */}
-        <div className="flex items-center">
-          <Link href="/" className="text-xl font-bold text-primary">
-            Yapa Store
+        <div className="flex items-center space-x-4">
+          <Link href="/">
+            <img src="/snowtech_logo.webp" alt="Snowtech Logo" className="h-8 w-auto" />
           </Link>
+          <div className="hidden md:flex space-x-4">
+            <Link href="/offers" className="text-sm font-bold text-black hover:text-indigo-600">
+              Offers
+            </Link>
+            <Link href="/home-appliances" className="text-sm font-bold text-black hover:text-indigo-600">
+              Home Appliances
+            </Link>
+            <Link href="/residential-ac" className="text-sm font-bold text-black hover:text-indigo-600">
+              Residential AC
+            </Link>
+            <Link href="/home-energy" className="text-sm font-bold text-black hover:text-indigo-600">
+              Home Energy
+            </Link>
+            <Link href="/accessories" className="text-sm font-bold text-black hover:text-indigo-600">
+              Accessories
+            </Link>
+          </div>
         </div>
 
         {/* Desktop Navigation */}
@@ -81,13 +98,13 @@ export default function Header({ onSearch }: HeaderProps) {
         </nav>
 
         {/* Search Bar */}
-        <div className="hidden md:flex items-center flex-grow max-w-md mx-4">
+        <div className="hidden md:flex items-center ml-auto">
           <Input
             type="search"
-            placeholder="Search products..."
+            placeholder="Search..."
             value={searchTerm}
             onChange={handleSearchChange}
-            className="w-full rounded-md"
+            className="w-full max-w-md rounded-md"
           />
           <Button variant="ghost" size="icon" className="ml-2">
             <SearchIcon className="h-4 w-4" />
