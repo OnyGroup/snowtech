@@ -1,4 +1,5 @@
 import { MapPinIcon, PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -64,8 +65,23 @@ export default function Footer() {
       </div>
 
       {/* Bottom Section */}
-      <div className="mt-8 border-t border-gray-300 pt-4 text-center text-sm text-black">
-        <p>&copy; {new Date().getFullYear()} Snowtech Electronics. All rights reserved.</p>
+      <div className="mt-8 border-t border-gray-300 pt-4 flex items-center justify-between text-sm text-black">
+        <div className="flex space-x-4">
+          <a href="https://www.facebook.com/Snowtechltd/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-800">
+            <FaFacebookF className="h-5 w-5" />
+          </a>
+          <a href="https://twitter.com/snowtechElec_ke" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-800">
+            <FaTwitter className="h-5 w-5" />
+          </a>
+          <a href="https://www.linkedin.com/company/snowtech-ltd?originalSubdomain=ke" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-800">
+            <FaLinkedinIn className="h-5 w-5" />
+          </a>
+        </div>
+        <div className="flex space-x-4">
+          <a href="/terms" className="hover:text-indigo-600">Terms</a>
+          <a href="/privacy-policy" className="hover:text-indigo-600">Privacy Policy</a>
+          <p>&copy; {new Date().getFullYear()} Snowtech</p>
+        </div>
       </div>
     </footer>
   );
