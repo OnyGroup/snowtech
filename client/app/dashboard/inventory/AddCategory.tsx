@@ -1,7 +1,6 @@
-"use client";
-
 import { useState } from "react";
 import axios from "axios";
+import { useToast } from "@/hooks/use-toast";
 
 interface CategoryData {
   name: string;
@@ -22,6 +21,7 @@ const AddCategory: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
+  const { toast } = useToast();
 
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL; // Ensure this is set in your .env file
 
@@ -40,13 +40,13 @@ const AddCategory: React.FC = () => {
     setLoading(true);
     setError(null);
     setSuccess(false);
-
+  
     try {
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
         throw new Error("Authentication token not found. Please log in.");
       }
-
+  
       const response = await axios.post<ApiResponse>(
         `${API_BASE_URL}store/categories/`,
         categoryData,
@@ -57,14 +57,28 @@ const AddCategory: React.FC = () => {
           },
         }
       );
-
+  
       if (response.status === 201) {
         setSuccess(true);
         setCategoryData({ name: "", description: "" }); // Reset form
+  
+        // Show success toast
+        toast({
+          title: "Success!",
+          description: "The category has been successfully added.",
+          variant: "default",
+        });
       }
     } catch (err: any) {
       console.error("Error adding category:", err);
       setError(err.response?.data?.message || "Failed to add category.");
+  
+      // Show error toast
+      toast({
+        title: "Error!",
+        description: "Failed to add the category. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -105,3 +119,4 @@ const AddCategory: React.FC = () => {
 };
 
 export default AddCategory;
+

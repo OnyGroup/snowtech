@@ -28,6 +28,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { useToast } from "@/hooks/use-toast";
 import { Category, InventoryItem } from "@/types/types_inventory";
 import InventoryActions from "./InventoryActions";
+import AddCategory from "./AddCategory";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL + "store";
 
@@ -206,6 +207,7 @@ export default function InventoryDashboard() {
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Inventory Management</h1>
 
+      <div className="flex gap-4 mb-6">
       {/* Add New Product Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
@@ -297,6 +299,20 @@ export default function InventoryDashboard() {
           </div>
         </DialogContent>
       </Dialog>
+
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="secondary">Add Category</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Add New Category</DialogTitle>
+          </DialogHeader>
+          {/* AddCategory Component */}
+          <AddCategory />
+        </DialogContent>
+      </Dialog>
+      </div>
 
       {/* Inventory Table */}
       <ScrollArea className="h-[600px]">
