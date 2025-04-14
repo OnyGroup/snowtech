@@ -58,6 +58,7 @@ export default function InventoryDashboard() {
   const [nextPageUrl, setNextPageUrl] = useState<string | null>(null);
   const [prevPageUrl, setPrevPageUrl] = useState<string | null>(null);
   const { toast } = useToast();
+  const [isAddCategoryDialogOpen, setIsAddCategoryDialogOpen] = useState(false);
 
   // Fetch inventory and categories on component mount
   useEffect(() => {
@@ -300,18 +301,18 @@ export default function InventoryDashboard() {
         </DialogContent>
       </Dialog>
 
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="secondary">Add Category</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Add New Category</DialogTitle>
-          </DialogHeader>
-          {/* AddCategory Component */}
-          <AddCategory />
-        </DialogContent>
-      </Dialog>
+      <Dialog open={isAddCategoryDialogOpen} onOpenChange={setIsAddCategoryDialogOpen}>
+  <DialogTrigger asChild>
+    <Button variant="secondary">Add Category</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Add New Category</DialogTitle>
+    </DialogHeader>
+    {/* AddCategory Component */}
+    <AddCategory onSuccess={() => setIsAddCategoryDialogOpen(false)} />
+  </DialogContent>
+</Dialog>
       </div>
 
       {/* Inventory Table */}

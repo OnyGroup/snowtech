@@ -13,7 +13,11 @@ interface ApiResponse {
   description: string;
 }
 
-const AddCategory: React.FC = () => {
+interface AddCategoryProps {
+  onSuccess?: () => void; // Callback to notify parent of success
+}
+
+const AddCategory: React.FC<AddCategoryProps> = ({ onSuccess }) => {
   const [categoryData, setCategoryData] = useState<CategoryData>({
     name: "",
     description: "",
@@ -40,13 +44,13 @@ const AddCategory: React.FC = () => {
     setLoading(true);
     setError(null);
     setSuccess(false);
-  
+
     try {
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
         throw new Error("Authentication token not found. Please log in.");
       }
-  
+
       const response = await axios.post<ApiResponse>(
         `${API_BASE_URL}store/categories/`,
         categoryData,
@@ -57,22 +61,27 @@ const AddCategory: React.FC = () => {
           },
         }
       );
-  
+
       if (response.status === 201) {
         setSuccess(true);
         setCategoryData({ name: "", description: "" }); // Reset form
-  
+
         // Show success toast
         toast({
           title: "Success!",
           description: "The category has been successfully added.",
           variant: "default",
         });
+
+        // Call onSuccess callback to notify parent
+        if (onSuccess) {
+          onSuccess(); // This will close the dialog in the parent component
+        }
       }
     } catch (err: any) {
       console.error("Error adding category:", err);
       setError(err.response?.data?.message || "Failed to add category.");
-  
+
       // Show error toast
       toast({
         title: "Error!",
@@ -119,4 +128,3 @@ const AddCategory: React.FC = () => {
 };
 
 export default AddCategory;
-
