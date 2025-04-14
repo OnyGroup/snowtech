@@ -52,7 +52,7 @@ export default function Footer() {
 
       {/* Bottom Section */}
       <div className="mt-8 border-t border-gray-700 pt-4 text-center text-sm text-gray-400">
-        <p>&copy; {new Date().getFullYear()} Yapa Store. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Snowtech Electronics. All rights reserved.</p>
       </div>
     </footer>
   );

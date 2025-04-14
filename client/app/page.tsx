@@ -181,7 +181,7 @@ export default function HomePage() {
       <footer className="border-t border-white/10" role="contentinfo">
         <div className="container mx-auto px-4 sm:px-6 py-12">
           <div className="text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} Yapa Hub. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Snowtech Electronics. All rights reserved.</p>
           </div>
         </div>
       </footer>
