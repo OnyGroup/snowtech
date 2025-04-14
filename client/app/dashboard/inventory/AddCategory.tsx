@@ -1,6 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
+import { 
+  Card,
+  CardContent
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import { 
+  AlertCircle,
+  CheckCircle2 
+} from "lucide-react";
+import { 
+  Alert,
+  AlertDescription
+} from "@/components/ui/alert";
 
 interface CategoryData {
   name: string;
@@ -94,36 +111,69 @@ const AddCategory: React.FC<AddCategoryProps> = ({ onSuccess }) => {
   };
 
   return (
-    <div className="add-category-container">
-      <h2>Add Category</h2>
-      {error && <p className="error-message">{error}</p>}
-      {success && <p className="success-message">Category added successfully!</p>}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Category Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={categoryData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={categoryData.description}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Adding..." : "Add Category"}
-        </button>
-      </form>
-    </div>
+    <Card className="border-0 shadow-none">
+      <CardContent className="p-0">
+        {error && (
+          <Alert variant="destructive" className="mb-4">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+        
+        {success && (
+          <Alert variant="default" className="mb-4 bg-green-50 border-green-200 text-green-800">
+            <CheckCircle2 className="h-4 w-4 text-green-600" />
+            <AlertDescription>Category added successfully!</AlertDescription>
+          </Alert>
+        )}
+        
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="name" className="text-sm font-medium">
+              Category Name
+            </Label>
+            <Input
+              id="name"
+              name="name"
+              value={categoryData.name}
+              onChange={handleChange}
+              placeholder="Enter category name"
+              className="w-full focus:ring-2 focus:ring-offset-1 focus:ring-blue-500"
+              required
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="description" className="text-sm font-medium">
+              Description (optional)
+            </Label>
+            <Textarea
+              id="description"
+              name="description"
+              value={categoryData.description}
+              onChange={handleChange}
+              placeholder="Enter category description"
+              className="w-full min-h-[100px] focus:ring-2 focus:ring-offset-1 focus:ring-blue-500"
+            />
+          </div>
+          
+          <Button 
+            type="submit" 
+            disabled={loading}
+            className="w-full"
+          >
+            {loading ? (
+              <>
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                Adding...
+              </>
+            ) : (
+              "Add Category"
+            )}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 };
 
