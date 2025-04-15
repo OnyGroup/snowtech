@@ -1,61 +1,76 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import axios from "axios";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import ProductList from "../StoreProductList";
-import { Product } from "@/types/types_inventory";
-import Header from "@/components/header_ecommerce";
-import { Skeleton } from "@/components/ui/skeleton";
-import FooterEcommerce from "@/components/footer_ecommerce";
+"use client"
+import { useState, useEffect } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import axios from "axios"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+import ProductList from "../StoreProductList"
+import type { Product } from "@/types/types_inventory"
+import Header from "@/components/header_ecommerce"
+import { Skeleton } from "@/components/ui/skeleton"
+import FooterEcommerce from "@/components/footer_ecommerce"
+import { HeroCarousel } from "@/components/hero-carousel"
+import { PromoBanner } from "@/components/promo-banner"
 
 export default function ProductsPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
-  const currentPage = Number(searchParams.get("page")) || 1;
-  const [products, setProducts] = useState<Product[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState("price"); // Default to ascending price
-  const [loading, setLoading] = useState(true);
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const currentPage = Number(searchParams.get("page")) || 1
+  const [products, setProducts] = useState<Product[]>([])
+  const [searchTerm, setSearchTerm] = useState("")
+  const [sortBy, setSortBy] = useState("price") // Default to ascending price
+  const [loading, setLoading] = useState(true)
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        let url = `${API_BASE_URL}store/products/?page=${currentPage}&ordering=${sortBy}`;
+        let url = `${API_BASE_URL}store/products/?page=${currentPage}&ordering=${sortBy}`
         if (searchTerm) {
-          url += `&search=${searchTerm}`;
+          url += `&search=${searchTerm}`
         }
-        console.log("API Request URL:", url); // Log the API request URL
+        console.log("API Request URL:", url) // Log the API request URL
         const response = await axios.get(url, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
-        });
-        console.log("Fetched Products:", response.data); // Log the raw response
+        })
+        console.log("Fetched Products:", response.data) // Log the raw response
         // Extract the 'results' field from the paginated response
-        setProducts(response.data.results || []);
+        setProducts(response.data.results || [])
       } catch (error) {
-        console.error("Failed to fetch products", error);
+        console.error("Failed to fetch products", error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    fetchProducts();
-  }, [currentPage, searchTerm, sortBy]);
+    }
+    fetchProducts()
+  }, [currentPage, searchTerm, sortBy])
 
   // Function to update the page number in the URL
   const handlePageChange = (newPage: number) => {
-    router.push(`?page=${newPage}`, { scroll: false });
-  };
+    router.push(`?page=${newPage}`, { scroll: false })
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* Include the Header component */}
       <Header onSearch={setSearchTerm} />
-  
+
+      {/* New Hero Carousel Section */}
+      <HeroCarousel />
+
+      {/* New Promo Banner Section */}
+      <PromoBanner />
+
       <div className="container mx-auto p-4 flex-grow">
         {/* Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-6">
@@ -69,7 +84,7 @@ export default function ProductsPage() {
             </SelectContent>
           </Select>
         </div>
-  
+
         {/* Product List */}
         <div>
           {loading ? (
@@ -82,11 +97,13 @@ export default function ProductsPage() {
                 </div>
               ))}
             </div>
+          ) : products.length > 0 ? (
+            <ProductList products={products} />
           ) : (
-            products.length > 0 ? <ProductList products={products} /> : <div>No products available.</div>
+            <div>No products available.</div>
           )}
         </div>
-  
+
         {/* Pagination */}
         <Pagination className="mt-6">
           <PaginationContent>
@@ -94,8 +111,8 @@ export default function ProductsPage() {
               <PaginationPrevious
                 href={`?page=${Math.max(currentPage - 1, 1)}`}
                 onClick={(e) => {
-                  e.preventDefault();
-                  handlePageChange(Math.max(currentPage - 1, 1));
+                  e.preventDefault()
+                  handlePageChange(Math.max(currentPage - 1, 1))
                 }}
               />
             </PaginationItem>
@@ -106,17 +123,17 @@ export default function ProductsPage() {
               <PaginationNext
                 href={`?page=${currentPage + 1}`}
                 onClick={(e) => {
-                  e.preventDefault();
-                  handlePageChange(currentPage + 1);
+                  e.preventDefault()
+                  handlePageChange(currentPage + 1)
                 }}
               />
             </PaginationItem>
           </PaginationContent>
         </Pagination>
       </div>
-  
+
       {/* Footer */}
       <FooterEcommerce />
     </div>
-  );
+  )
 }
