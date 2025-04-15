@@ -1,18 +1,17 @@
-"use client"
-import Image from "next/image"
-import Link from "next/link"
-import useEmblaCarousel from "embla-carousel-react"
-import Autoplay from "embla-carousel-autoplay"
-
-import { Button } from "@/components/ui/button"
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { Button } from "@/components/ui/button";
 
 export function HeroCarousel() {
   const autoplayOptions = {
     delay: 5000,
     rootNode: (emblaRoot: HTMLElement) => emblaRoot.parentElement as HTMLElement,
-  }
+  };
 
-  const [emblaRef] = useEmblaCarousel({ loop: true, direction: "ltr" }, [Autoplay(autoplayOptions)])
+  const [emblaRef] = useEmblaCarousel({ loop: true, direction: "ltr" }, [Autoplay(autoplayOptions)]);
 
   return (
     <section className="w-full mb-12">
@@ -21,9 +20,9 @@ export function HeroCarousel() {
           {Array.from({ length: 6 }).map((_, index) => (
             <div key={index} className="relative flex-[0_0_100%] min-w-0">
               <div className="relative w-full h-[780px] md:h-[500px] lg:h-[780px]">
-                <div className="absolute inset-0 z-10 flex items-center">
+                <div className="absolute inset-0 z-10 flex items-center justify-center">
                   <div className="container px-4 md:px-6">
-                    <div className="max-w-md space-y-4">
+                    <div className="max-w-md space-y-4 text-center">
                       <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-white drop-shadow-md">
                         SPECIAL OFFER
                       </h2>
@@ -39,10 +38,10 @@ export function HeroCarousel() {
                   </div>
                 </div>
                 <Image
-                  src={`/placeholder.svg?height=780&width=1920&text=Special+Offer+${index + 1}`}
+                  src={`/images/ecommerce/hero1.webp?height=500&width=1920&text=Special+Offer+${index + 1}`}
                   alt={`Special Offer ${index + 1}`}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority={index === 0}
                 />
                 <div className="absolute inset-0 bg-black/30 z-0" />
@@ -52,5 +51,5 @@ export function HeroCarousel() {
         </div>
       </div>
     </section>
-  )
+  );
 }
