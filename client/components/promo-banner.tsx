@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
@@ -6,7 +7,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 
 export function PromoBanner() {
-  // promotional banners
+  // Define promotional banners content
   const promoItems = [
     {
       image: "/images/ecommerce/vacuum-cleaner.webp",
@@ -34,12 +35,36 @@ export function PromoBanner() {
     }
   ];
 
-  const autoplayOptions = {
-    delay: 7000,
-    rootNode: (emblaRoot: HTMLElement) => emblaRoot.parentElement as HTMLElement,
-  };
+  // autoplay plugin with options
+  const autoplayPlugin = useRef(
+    Autoplay({
+      delay: 5000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: false
+    })
+  );
 
-  const [emblaRef] = useEmblaCarousel({ loop: true, direction: "ltr" }, [Autoplay(autoplayOptions)]);
+  // Initialize carousel with autoplay plugin
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "start", skipSnaps: false }, 
+    [autoplayPlugin.current]
+  );
+
+  // Make sure autoplay starts when component mounts
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('init', () => {
+        console.log('Carousel initialized');
+      });
+    }
+    
+    return () => {
+      // Clean up autoplay when component unmounts
+      if (autoplayPlugin.current && autoplayPlugin.current.reset) {
+        autoplayPlugin.current.reset();
+      }
+    };
+  }, [emblaApi]);
 
   return (
     <section className="w-full mb-12">
