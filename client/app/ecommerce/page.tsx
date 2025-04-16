@@ -65,11 +65,10 @@ export default function ProductsPage() {
       {/* Include the Header component */}
       <Header onSearch={setSearchTerm} />
 
-      {/* New Hero Carousel Section */}
-      <HeroCarousel />
-
-      {/* New Promo Banner Section */}
-      <PromoBanner />
+      <div className="flex flex-col">
+        <HeroCarousel />
+        <PromoBanner />
+      </div>
 
       <div className="container mx-auto p-4 flex-grow">
         {/* Filters */}

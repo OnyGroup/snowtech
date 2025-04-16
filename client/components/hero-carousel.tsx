@@ -14,7 +14,7 @@ export function HeroCarousel() {
   const [emblaRef] = useEmblaCarousel({ loop: true, direction: "ltr" }, [Autoplay(autoplayOptions)]);
 
   return (
-    <section className="w-full mb-12">
+    <section className="w-full">
       <div className="relative overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {Array.from({ length: 6 }).map((_, index) => (
@@ -23,14 +23,14 @@ export function HeroCarousel() {
                 <div className="absolute inset-0 z-10 flex items-center justify-center">
                   <div className="container px-4 md:px-6">
                     <div className="max-w-md space-y-4 text-center">
-                      <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-white drop-shadow-md">
+                      <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-black drop-shadow-sm">
                         SPECIAL OFFER
                       </h2>
-                      <p className="text-xl md:text-2xl font-medium text-white drop-shadow-md">Hot deals, No Sweat</p>
-                      <p className="text-lg md:text-xl text-white drop-shadow-md">Stay connected, Stay Ahead</p>
-                      <p className="text-lg md:text-xl text-white drop-shadow-md">and Stay Stylish</p>
+                      <p className="text-xl md:text-2xl font-medium text-black drop-shadow-sm">Hot deals, No Sweat</p>
+                      <p className="text-lg md:text-xl text-black drop-shadow-sm">Stay connected, Stay Ahead</p>
+                      <p className="text-lg md:text-xl text-black drop-shadow-sm">and Stay Stylish</p>
                       <div className="pt-4">
-                        <Button asChild className="bg-white text-[#4A4A9C] hover:bg-white/90">
+                        <Button asChild className="bg-[#4A4A9C] text-white hover:bg-[#4A4A9C]/90">
                           <Link href="/products">Browse offers</Link>
                         </Button>
                       </div>
@@ -44,7 +44,7 @@ export function HeroCarousel() {
                   className="object-contain"
                   priority={index === 0}
                 />
-                <div className="absolute inset-0 bg-black/30 z-0" />
+                {/* Removed the overlay div */}
               </div>
             </div>
           ))}
