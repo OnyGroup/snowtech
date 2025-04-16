@@ -15,7 +15,7 @@ export function PromoBanner() {
               </h2>
               <p className="text-xl md:text-2xl font-medium text-black drop-shadow-sm">New Wireless Pro</p>
               <p className="text-lg md:text-xl text-black drop-shadow-sm">
-                Spatial Audio, Adjustable ear cups, On-device control, All-day battery
+                Spatial Audio. Adjustable ear cups. On-device control. All-day battery.
               </p>
               <div className="pt-4">
                 <Button asChild className="bg-[#4A4A9C] text-white hover:bg-[#4A4A9C]/90">
@@ -31,7 +31,6 @@ export function PromoBanner() {
           fill
           className="object-cover"
         />
-        {/* Removed the overlay div */}
       </div>
     </section>
   )
