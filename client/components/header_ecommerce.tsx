@@ -54,8 +54,8 @@ export default function Header({ onSearch }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b shadow-sm">
-      <div className="container flex items-center justify-between h-16 px-4 mx-auto">
+      <header className="sticky top-0 z-50 w-full bg-white border-b shadow-sm">
+        <div className="flex items-center justify-between h-16 px-4">
         {/* Logo */}
         <div className="flex items-center space-x-4">
           <Link href="/">
