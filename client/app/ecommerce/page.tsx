@@ -11,6 +11,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import { Card, CardContent } from "@/components/ui/card"
+import Image from "next/image"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import ProductList from "../StoreProductList"
 import type { Product } from "@/types/types_inventory"
 import Header from "@/components/header_ecommerce"
@@ -18,6 +21,12 @@ import { Skeleton } from "@/components/ui/skeleton"
 import FooterEcommerce from "@/components/footer_ecommerce"
 import { HeroCarousel } from "@/components/hero-carousel"
 import { PromoBanner } from "@/components/promo-banner"
+import { FeaturedProducts } from "@/components/featured-products"
+import { ModernLivingSection } from "@/components/modern-living-section"
+import { AppliancesShowcase } from "@/components/appliances-showcase"
+import { ResidentialACShowcase } from "@/components/residential-ac-showcase"
+import { HomeEnergyShowcase } from "@/components/home-energy-showcase"
+import { SnowCareSupport } from "@/components/snow-care-support"
 
 export default function ProductsPage() {
   const router = useRouter()
@@ -29,6 +38,18 @@ export default function ProductsPage() {
   const [sortBy, setSortBy] = useState("price") // Default to ascending price
   const [loading, setLoading] = useState(true)
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
+
+  const productImages = [
+    "/images/company-logos/samsung.webp",
+    "/images/company-logos/lg.webp",
+    "/images/company-logos/panasonic.webp",
+    "/images/company-logos/bruhm.webp",
+    "/images/company-logos/hik-vision.webp",
+    "/images/company-logos/snowtech.webp",
+    "/images/company-logos/toshiba.webp",
+    "/images/company-logos/zk-software.webp",
+    "/images/company-logos/zkteco.webp",
+  ]    
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -68,7 +89,41 @@ export default function ProductsPage() {
       <div className="flex flex-col">
         <HeroCarousel />
         <PromoBanner />
+        <FeaturedProducts />
+        <ModernLivingSection />
+        <AppliancesShowcase />
+        <ResidentialACShowcase />
+        <HomeEnergyShowcase />
+        <SnowCareSupport />
       </div>
+
+      <div className="container px-4 md:px-6">
+          <h2 className="text-3xl font-bold text-center text-[#4A4A9C] mb-12">Brands we work with</h2>
+          <Carousel className="w-full max-w-5xl mx-auto">
+            <CarouselContent>
+            {productImages.map((src, index) => (
+              <CarouselItem key={index} className="basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/7">
+                <div className="p-2">
+                  <Card className="shadow-none border-none bg-transparent">
+                  <CardContent className="flex items-center justify-center h-48 p-6">
+                    <div className="relative w-full h-full max-h-32">
+                      <Image
+                        src={src}
+                        alt={`Product ${index + 1}`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
 
       <div className="container mx-auto p-4 flex-grow">
         {/* Filters */}
