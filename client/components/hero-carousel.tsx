@@ -1,9 +1,9 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import { Button } from "@/components/ui/button";
+"use client"
+import Image from "next/image"
+import Link from "next/link"
+import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
+import { Button } from "@/components/ui/button"
 
 export function HeroCarousel() {
   // carousel slides
@@ -15,7 +15,7 @@ export function HeroCarousel() {
       description1: "Stay connected, Stay Ahead",
       description2: "and Stay Stylish",
       buttonText: "Browse offers",
-      buttonLink: "/offers"
+      buttonLink: "/offers",
     },
     {
       image: "/images/ecommerce/hvac.webp",
@@ -24,7 +24,7 @@ export function HeroCarousel() {
       description1: "Stay cool with our energy-efficient",
       description2: "air conditioning systems",
       buttonText: "View HVAC products",
-      buttonLink: "/residential-ac"
+      buttonLink: "/residential-ac",
     },
     {
       image: "/images/ecommerce/oven.webp",
@@ -33,19 +33,19 @@ export function HeroCarousel() {
       description1: "Premium kitchen appliances",
       description2: "for the modern home",
       buttonText: "Explore appliances",
-      buttonLink: "/home-appliances"
-    }
-  ];
+      buttonLink: "/home-appliances",
+    },
+  ]
 
   const autoplayOptions = {
     delay: 5000,
     rootNode: (emblaRoot: HTMLElement) => emblaRoot.parentElement as HTMLElement,
-  };
+  }
 
-  const [emblaRef] = useEmblaCarousel({ loop: true, direction: "ltr" }, [Autoplay(autoplayOptions)]);
+  const [emblaRef] = useEmblaCarousel({ loop: true, direction: "ltr" }, [Autoplay(autoplayOptions)])
 
   return (
-    <section className="w-full">
+    <section className="w-full -mt-4">
       <div className="relative overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {carouselSlides.map((slide, index) => (
@@ -69,7 +69,7 @@ export function HeroCarousel() {
                   </div>
                 </div>
                 <Image
-                  src={slide.image}
+                  src={slide.image || "/placeholder.svg"}
                   alt={`${slide.title} - ${slide.subtitle}`}
                   fill
                   className="object-contain"
@@ -81,5 +81,5 @@ export function HeroCarousel() {
         </div>
       </div>
     </section>
-  );
+  )
 }

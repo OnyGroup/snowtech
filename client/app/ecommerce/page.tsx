@@ -49,7 +49,7 @@ export default function ProductsPage() {
     "/images/company-logos/toshiba.webp",
     "/images/company-logos/zk-software.webp",
     "/images/company-logos/zkteco.webp",
-  ]    
+  ]
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -87,7 +87,9 @@ export default function ProductsPage() {
       <Header onSearch={setSearchTerm} />
 
       <div className="flex flex-col">
-        <HeroCarousel />
+        <div className="-mt-6">
+          <HeroCarousel />
+        </div>
         <PromoBanner />
         <FeaturedProducts />
         <ModernLivingSection />
@@ -97,33 +99,33 @@ export default function ProductsPage() {
         <SnowCareSupport />
       </div>
 
-      <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold text-center text-[#4A4A9C] mb-12">Brands we work with</h2>
-          <Carousel className="w-full max-w-5xl mx-auto">
-            <CarouselContent>
+      <div className="container px-4 md:px-6 mx-auto text-center pt-16">
+        <h2 className="text-3xl font-bold text-center text-[#4A4A9C] mb-6">Brands we work with</h2>
+        <Carousel className="w-full max-w-5xl mx-auto">
+          <CarouselContent>
             {productImages.map((src, index) => (
               <CarouselItem key={index} className="basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/7">
                 <div className="p-2">
                   <Card className="shadow-none border-none bg-transparent">
-                  <CardContent className="flex items-center justify-center h-48 p-6">
-                    <div className="relative w-full h-full max-h-32">
-                      <Image
-                        src={src}
-                        alt={`Product ${index + 1}`}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </CardContent>
+                    <CardContent className="flex items-center justify-center h-48 p-6">
+                      <div className="relative w-full h-full max-h-32">
+                        <Image
+                          src={src || "/placeholder.svg"}
+                          alt={`Product ${index + 1}`}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </CardContent>
                   </Card>
                 </div>
               </CarouselItem>
             ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        </div>
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
 
       <div className="container mx-auto p-4 flex-grow">
         {/* Filters */}

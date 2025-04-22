@@ -21,7 +21,7 @@ export function FeaturedProducts() {
       id: "air-purifier",
       title: "Snow Air Purifier",
       savings: "5,000",
-      image: "/images/air_purifier.jpg?height=600&width=1000&text=Air+Purifier",
+      image: "/images/air_purifier.webp?height=600&width=1000&text=Air+Purifier",
       isNew: true,
     },
     {
@@ -35,7 +35,7 @@ export function FeaturedProducts() {
       id: "iron-box",
       title: "retro hot iron-box",
       savings: "1,500",
-      image: "/images/iron_box.webp?height=300&width=300&text=Iron+Box",
+      image: "/images/retro-iron-box.png?height=300&width=300&text=Iron+Box",
       isNew: true,
     },
     {
@@ -76,13 +76,13 @@ export function FeaturedProducts() {
           <div className="md:col-span-1 bg-white rounded-lg overflow-hidden shadow-sm">
             <div className="relative p-6 h-full flex flex-col">
               <div className="flex-1 flex items-center justify-center">
-                <div className="grid grid-cols-2 gap-2">
+                <div className="w-full h-full">
                   <Image
-                    src="/images/fridge_oven1.jpg?height=909&width=801&text=Refrigerator"
+                    src="/images/fridge_oven1.jpg"
                     alt="Refrigerator"
                     width={801}
                     height={909}
-                    className="object-contain"
+                    className="object-contain w-full h-full mx-auto"
                   />
                 </div>
               </div>
