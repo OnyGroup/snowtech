@@ -83,7 +83,7 @@ export default function ProductsPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Include the Header component */}
+      {/* Include the Header component - the promo banner and secondary nav are now in layout.tsx */}
       <Header onSearch={setSearchTerm} />
 
       <div className="flex flex-col">
