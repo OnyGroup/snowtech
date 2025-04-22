@@ -12,7 +12,7 @@ export function PromoBanner() {
     {
       image: "/images/ecommerce/vacuum-cleaner.webp",
       title: "CLEAN WITH EASE",
-      subtitle: "New Cordless Pro",
+      subtitle: "New Suction Pro",
       description: "Powerful suction. Lightweight design. Long-lasting battery. Perfect for all surfaces.",
       buttonText: "Show deals",
       buttonLink: "/offers"
