@@ -23,7 +23,7 @@ export function SecondaryNavigation() {
         </Link>
         <Link
           href="/business"
-          className="flex items-center text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+          className="flex items-center text-sm bg-[#4A4A9C] text-white px-3 py-1 rounded hover:bg-[#4A4A9C]/90"
         >
           For Business
           <ArrowRight className="h-4 w-4 ml-1" />
