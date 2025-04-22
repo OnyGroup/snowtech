@@ -1,12 +1,16 @@
 "use client"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import useEmblaCarousel from "embla-carousel-react"
 import Autoplay from "embla-carousel-autoplay"
 import { Button } from "@/components/ui/button"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export function PromoBanner() {
+  // State to track the current slide index
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
   // Define promotional banners content
   const promoItems = [
     {
@@ -49,12 +53,30 @@ export function PromoBanner() {
     autoplayPlugin.current,
   ])
 
-  // Make sure autoplay starts when component mounts
+  // Update the selected index when the slide changes
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  // Scroll to a specific slide when a dot is clicked
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (!emblaApi) return
+      emblaApi.scrollTo(index)
+    },
+    [emblaApi],
+  )
+
+  // Make sure autoplay starts when component mounts and register onSelect callback
   useEffect(() => {
     if (emblaApi) {
       emblaApi.on("init", () => {
         console.log("Carousel initialized")
       })
+
+      onSelect()
+      emblaApi.on("select", onSelect)
     }
 
     return () => {
@@ -62,8 +84,12 @@ export function PromoBanner() {
       if (autoplayPlugin.current && autoplayPlugin.current.reset) {
         autoplayPlugin.current.reset()
       }
+
+      if (emblaApi) {
+        emblaApi.off("select", onSelect)
+      }
     }
-  }, [emblaApi])
+  }, [emblaApi, onSelect])
 
   return (
     <section className="w-full mb-12 relative">
@@ -143,6 +169,36 @@ export function PromoBanner() {
                 />
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full p-2 shadow-md hover:bg-white transition-colors"
+          onClick={() => emblaApi?.scrollPrev()}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="h-6 w-6 text-gray-800" />
+        </button>
+        <button
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full p-2 shadow-md hover:bg-white transition-colors"
+          onClick={() => emblaApi?.scrollNext()}
+          aria-label="Next slide"
+        >
+          <ChevronRight className="h-6 w-6 text-gray-800" />
+        </button>
+
+        {/* Navigation Dots */}
+        <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center gap-2">
+          {promoItems.map((_, index) => (
+            <button
+              key={index}
+              className={`w-16 h-1 rounded-full transition-colors ${
+                index === selectedIndex ? "bg-blue-600" : "bg-gray-300"
+              }`}
+              onClick={() => scrollTo(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
           ))}
         </div>
       </div>
