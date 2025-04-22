@@ -17,6 +17,11 @@ export interface Category {
   }
 
   export interface Product {
+    inventory_count: undefined;
+    rating: number;
+    reviews_count: number;
+    weight: any;
+    original_price: number | null;
     id: number;
     name: string;
     description: string;
