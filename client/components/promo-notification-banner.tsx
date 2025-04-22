@@ -9,7 +9,7 @@ export function PromoNotificationBanner() {
   if (!isVisible) return null
 
   return (
-    <div className="w-full bg-blue-600 text-white py-2">
+    <div className="w-full bg-[#4A4A9C] text-white py-2">
       <div className="container mx-auto px-4 flex items-center justify-center">
         <div className="flex-1 text-center">
           <p className="text-sm md:text-base">
