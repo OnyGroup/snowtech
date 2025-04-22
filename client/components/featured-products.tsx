@@ -52,7 +52,7 @@ export function FeaturedProducts() {
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center mb-8">
           <h2 className="text-3xl font-bold text-center mb-4">Shop all latest products and innovations</h2>
-          <Link href="/products" className="text-blue-600 hover:underline">
+          <Link href="/offers" className="text-blue-600 hover:underline">
             View all offers
           </Link>
         </div>
