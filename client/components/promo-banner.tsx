@@ -144,19 +144,17 @@ export function PromoBanner() {
           {promoItems.map((item, index) => (
             <div key={index} className="relative flex-[0_0_100%] min-w-0">
               <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
-                <div className="absolute inset-0 z-10 flex items-center justify-end">
-                  <div className="container px-4 md:px-6">
-                    <div className="ml-auto max-w-md space-y-4">
-                      <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-black drop-shadow-sm">
-                        {item.title}
-                      </h2>
-                      <p className="text-xl md:text-2xl font-medium text-black drop-shadow-sm">{item.subtitle}</p>
-                      <p className="text-lg md:text-xl text-black drop-shadow-sm">{item.description}</p>
-                      <div className="pt-4">
-                        <Button asChild className="bg-[#4A4A9C] text-white hover:bg-[#4A4A9C]/90">
-                          <Link href={item.buttonLink}>{item.buttonText}</Link>
-                        </Button>
-                      </div>
+                <div className="absolute inset-0 z-10 flex items-center justify-center md:justify-end">
+                  <div className="ml-0 md:ml-0 md:mr-16 max-w-md space-y-4">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-black drop-shadow-sm">
+                      {item.title}
+                    </h2>
+                    <p className="text-xl md:text-2xl font-medium text-black drop-shadow-sm">{item.subtitle}</p>
+                    <p className="text-lg md:text-xl text-black drop-shadow-sm">{item.description}</p>
+                    <div className="pt-4">
+                      <Button asChild className="bg-[#4A4A9C] text-white hover:bg-[#4A4A9C]/90">
+                        <Link href={item.buttonLink}>{item.buttonText}</Link>
+                      </Button>
                     </div>
                   </div>
                 </div>

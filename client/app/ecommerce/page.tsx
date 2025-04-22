@@ -90,13 +90,28 @@ export default function ProductsPage() {
         <div className="-mt-6">
           <HeroCarousel />
         </div>
-        <PromoBanner />
-        <FeaturedProducts />
-        <ModernLivingSection />
-        <AppliancesShowcase />
-        <ResidentialACShowcase />
-        <HomeEnergyShowcase />
-        <SnowCareSupport />
+        {/* Add a white space separator by adding margin-top (mt-8) to each section after the first one */}
+        <div className="mt-8 bg-white">
+          <PromoBanner />
+        </div>
+        <div className="mt-8 bg-white">
+          <FeaturedProducts />
+        </div>
+        <div className="mt-8 bg-white">
+          <ModernLivingSection />
+        </div>
+        <div className="mt-8 bg-white">
+          <AppliancesShowcase />
+        </div>
+        <div className="mt-8 bg-white">
+          <ResidentialACShowcase />
+        </div>
+        <div className="mt-8 bg-white">
+          <HomeEnergyShowcase />
+        </div>
+        <div className="mt-8 bg-white">
+          <SnowCareSupport />
+        </div>
       </div>
 
       <div className="container px-4 md:px-6 mx-auto text-center pt-16">
