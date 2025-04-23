@@ -48,7 +48,7 @@ export function ModernLivingSection() {
                   plus 3 years of Snow Care+ for just KES. 40,000
                 </p>
                 <div className="flex justify-center">
-                  <Button className="bg-blue-600 hover:bg-blue-700">Book a free consultation</Button>
+                  <Button className="bg-indigo-500 hover:bg-indigo-600 text-white">Book a free consultation</Button>
                 </div>
               </div>
             </div>
@@ -66,10 +66,10 @@ export function ModernLivingSection() {
               <div className="p-6">
                 <h3 className="text-2xl font-bold mb-2 text-center">Modernize your kitchen with the best quality</h3>
                 <p className="text-sm text-gray-600 mb-4 text-center">
-                  Experience dynamic intelligence that optimizes your picture and sound, based on what you're watching.
+                  Experience dynamic intelligence that optimizes your picture and sound, based on what you&apos;re watching.
                 </p>
                 <div className="flex justify-center">
-                  <Button className="bg-blue-600 hover:bg-blue-700">Shop kitchen appliances now</Button>
+                  <Button className="bg-indigo-500 hover:bg-indigo-600 text-white">Shop kitchen appliances now</Button>
                 </div>
               </div>
             </div>
@@ -89,10 +89,10 @@ export function ModernLivingSection() {
                   Refresh your living with bespoke interior fitting
                 </h3>
                 <p className="text-sm text-gray-600 mb-4 text-center">
-                  Experience dynamic intelligence that optimizes your picture and sound, based on what you're watching.
+                  Experience dynamic intelligence that optimizes your picture and sound, based on what you&apos;re watching.
                 </p>
                 <div className="flex justify-center">
-                  <Button className="bg-blue-600 hover:bg-blue-700">Book a free consultation</Button>
+                  <Button className="bg-indigo-500 hover:bg-indigo-600 text-white">Book a free consultation</Button>
                 </div>
               </div>
             </div>
