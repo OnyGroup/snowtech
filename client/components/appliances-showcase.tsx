@@ -73,7 +73,7 @@ export function AppliancesShowcase() {
               <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10" asChild>
                 <Link href="/products/home-appliances">Shop all home appliances deals</Link>
               </Button>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white" asChild>
+              <Button className="bg-indigo-500 hover:bg-indigo-600 text-white" asChild>
                 <Link href="/products/washing-machines/pre-order">Pre-order now</Link>
               </Button>
             </div>

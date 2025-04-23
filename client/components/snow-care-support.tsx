@@ -28,7 +28,7 @@ export function SnowCareSupport() {
             Get peace of mind with Snow Care. Explore device, home appliance and electronics warranty and support and
             get the most out of our products.
           </p>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white" asChild>
+          <Button className="bg-indigo-500 hover:bg-indigo-600 text-white" asChild>
             <Link href="/snow-care">Learn more</Link>
           </Button>
         </div>
